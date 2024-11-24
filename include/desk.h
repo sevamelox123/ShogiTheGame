@@ -1,13 +1,20 @@
-#ifndef DESK_H
-#define DESK_H
+#pragma once
 
 #include <cstdio>
-#include <ncurses.h> 
+#include <ncurses.h>
 #include "structs.h"
+#include "shoga.h"
+
+
 class Desk
 {
-    public:
+public:
     Desk();
     void printDesk();
+    void AddPiece(Piece*);
+
+
+private:
+    Piece *desk[9][9] = {nullptr};
+
 };
-#endif
