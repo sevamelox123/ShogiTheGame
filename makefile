@@ -27,8 +27,8 @@ DEL_DIR       = rmdir
 MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
-LIBS_DIRS     = -I./include/
-LIBS 		  = $(LIBS_DIRS) -lncursesw -lraylib
+LIBS_DIRS     = -I./include/ -I./raylib/include/ -L./raylib/lib/
+LIBS 		  = $(LIBS_DIRS) -lncursesw -lraylib -ldl
 # LIBS = -lncurses
 SED           = sed
 STRIP         = strip
@@ -37,7 +37,8 @@ STRIP         = strip
 all: clean build run
 
 build: $(SOURCE)
-	$(CC) $(CC_FLAGS) $(SOURCES) -o $(BIN_DIR)/$(TARGET) $(LIBS) 
+	$(CC) $(CC_FLAGS) $(SOURCES) -o $(BIN_DIR)/$(TARGET) $(LIBS)
+	$(COPY_FILE) ./raylib/lib/libraylib.so ./bin/
 
 run:
 	./$(BIN_DIR)/$(TARGET)
