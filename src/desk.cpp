@@ -38,8 +38,8 @@ void Desk::printDesk()
                     printw("###");
                 else {
                     printw("#");
-                    // printw("%lc", desk[y][x]->symbol);
-                    printw("歩");
+                    printw("%lc", desk[y][x]->GetSymbol());
+                    // printw("歩");
                     printw("#");
                 }
             }

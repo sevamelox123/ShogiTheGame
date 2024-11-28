@@ -1,6 +1,5 @@
 #pragma once
 
-#include <ncurses.h>
 #include "structs.h"
 
 class Piece
@@ -8,15 +7,17 @@ class Piece
 protected:
     int x, y;
     Sides side;
-
+    // wchar_t symbol;
+    int symbol;
 public:
     Piece(int x, int y, Sides side);
     Vector2D GetCoordinates();
-    const wchar_t symbol = 0;
+    int GetSymbol();
 };
 class Pawn : public Piece
 {
 public:
-    Pawn(int x, int y, Sides side) : Piece(x, y, side) {}
-    const wchar_t symbol = L'歩';
+    Pawn(int x, int y, Sides side) : Piece(x, y, side) {
+        symbol = L'歩';
+    }
 };

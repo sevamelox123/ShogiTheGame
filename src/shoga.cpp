@@ -12,3 +12,8 @@ Vector2D Piece::GetCoordinates()
 {
     return Vector2D{x, y};
 }
+
+int Piece::GetSymbol()
+{
+    return symbol;
+}
