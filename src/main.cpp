@@ -64,13 +64,12 @@ int main(int argc,char *argv[])
 
   InitWindow(screenWidth, screenHeight, "ShogiGame");
   
-  SetTargetFPS(200);
+  SetTargetFPS(60);
 
-  // Rectangle btnBounds = { screenWidth/2.0f - screenWidth/4.0f, screenHeight/2.0f - screenHeight/4.0f, screenWidth/2.0f, screenHeight/2.0f};
   Vector2 mousePoint = {0.0f, 0.0f};
 
   while (!WindowShouldClose()) {
-    Rectangle btnBounds = { GetScreenWidth()/2.0f - GetScreenWidth()/4.0f - GetScreenWidth() / 4.0f * sin(GetTime() * 5), GetScreenHeight()/2.0f - GetScreenHeight()/4.0f, GetScreenWidth()/2.0f, GetScreenHeight()/2.0f};
+    Rectangle btnBounds = { GetScreenWidth()/2.0f - GetScreenWidth()/4.0f - GetScreenWidth() / 4.0f * sin(GetTime() * -5), GetScreenHeight()/2.0f - GetScreenHeight()/4.0f - GetScreenHeight()/4.0f * cos(GetTime() * 5), GetScreenWidth()/2.0f, GetScreenHeight()/2.0f};
 
     BeginDrawing();
 
@@ -78,7 +77,6 @@ int main(int argc,char *argv[])
 
     if (CheckCollisionPointRec(mousePoint, btnBounds)) {
       printf("Pokakat'\n");
-      printf("%f\n", GetFrameTime());
     }
 
     ClearBackground(RAYWHITE);
