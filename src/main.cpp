@@ -6,7 +6,6 @@
 
 int main(int argc,char *argv[])
 {
-  setlocale(LC_ALL, "");
   initscr();
   
   Pawn pawn = Pawn(2, 2, Sides::先手);
