@@ -1,5 +1,5 @@
 #include <cstdio>
-#include <ncurses.h>
+// #include <ncurses.h>
 #include "desk.h"
 #include <vector>
 

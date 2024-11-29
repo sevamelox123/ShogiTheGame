@@ -1,4 +1,4 @@
-#include <ncurses.h>
+// #include <ncurses.h>
 #include "shoga.h"
 
 Piece::Piece(int _x, int _y, Sides _side)
