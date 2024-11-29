@@ -28,6 +28,7 @@ int main(int argc,char *argv[])
   double (*GetTime)();
   float (*GetFrameTime)();
   int (*GetFPS)();
+  void (*DrawText)(const char *text, int posX, int posY, int fontSize, Color color);
 
   char* program_location_folder = new char[strlen(argv[0])];
   strcpy(program_location_folder, argv[0]);
@@ -55,6 +56,7 @@ int main(int argc,char *argv[])
   GetTime = reinterpret_cast<double(*)()>(dlsym(ray_handle, "GetTime"));
   GetFPS = reinterpret_cast<int(*)()>(dlsym(ray_handle, "GetFPS"));
   GetFrameTime = reinterpret_cast<float(*)()>(dlsym(ray_handle, "GetFrameTime"));
+  DrawText = reinterpret_cast<void(*)(const char *text, int posX, int posY, int fontSize, Color color)>(dlsym(ray_handle, "DrawText"));
 
   if (ray_handle == nullptr) {
     printf("No raylib shared library found!\n");
@@ -76,12 +78,13 @@ int main(int argc,char *argv[])
     mousePoint = GetMousePosition();
 
     if (CheckCollisionPointRec(mousePoint, btnBounds)) {
-      printf("Pokakat'\n");
+      DrawRectangleRec(btnBounds, RED);
+    } else {
+      DrawRectangleRec(btnBounds, ORANGE);
+      DrawText("Pokakat",GetScreenWidth()/2.0f - GetScreenWidth()/4.0f - GetScreenWidth() / 4.0f * sin(GetTime() * -5), GetScreenHeight()/2.0f - GetScreenHeight()/4.0f - GetScreenHeight()/4.0f * cos(GetTime() * 5),100, BLACK);
     }
 
     ClearBackground(RAYWHITE);
-
-    DrawRectangleRec(btnBounds, ORANGE);
 
     EndDrawing();
   }
