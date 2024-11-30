@@ -72,6 +72,9 @@ int main(int argc, char *argv[])
     if (CheckCollisionPointRec(mousePoint, btnBounds))
     {
       DrawRectangleRec(btnBounds, RED);
+      Font font = GetFontDefault();
+      Vector2 text_size = MeasureTextEx(font, "Play Shog", 50, 5);
+      DrawTextPro(font, "Play Shog", Vector2{GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f}, Vector2{text_size.x / 2.0f, text_size.y / 2.0f}, 0, 50, 5, BLACK);
       if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
       {
         CloseWindow();
