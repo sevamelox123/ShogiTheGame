@@ -58,9 +58,16 @@ int main(int argc,char *argv[])
 
     BeginDrawing();
 
-    ClearBackground(RAYWHITE);
+    mousePoint = GetMousePosition();
 
-    DrawRectangleRec(btnBounds, ORANGE);
+    if (CheckCollisionPointRec(mousePoint, btnBounds)) {
+      DrawRectangleRec(btnBounds, RED);
+    } else {
+      DrawRectangleRec(btnBounds, ORANGE);
+      DrawText("Pokakat",GetScreenWidth()/2.0f - GetScreenWidth()/4.0f - GetScreenWidth() / 4.0f * sin(GetTime() * -5), GetScreenHeight()/2.0f - GetScreenHeight()/4.0f - GetScreenHeight()/4.0f * cos(GetTime() * 5),100, BLACK);
+    }
+
+    ClearBackground(RAYWHITE);
 
     EndDrawing();
   }
