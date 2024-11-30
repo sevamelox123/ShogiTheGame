@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstdio>
-#include <ncurses.h>
+// #include <ncurses.h>
 #include "structs.h"
 #include "shoga.h"
 
