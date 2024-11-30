@@ -21,3 +21,5 @@ typedef decltype(GetScreenWidth)* RL_GetScreenWidth_t;
 typedef decltype(GetTime)* RL_GetTime_t;
 typedef decltype(GetFPS)* RL_GetFPS_t;
 typedef decltype(GetFrameTime)* RL_GetFrameTime_t;
+typedef decltype(DrawText)* RL_DrawText_t;
+typedef decltype(IsMouseButtonDown)* RL_IsMouseButtonDown_t;

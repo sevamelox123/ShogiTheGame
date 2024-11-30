@@ -40,6 +40,8 @@ int main(int argc,char *argv[])
   LOAD_FUNC_FROM_DLL(RL_GetTime_t, GetTime, ray_handle);
   LOAD_FUNC_FROM_DLL(RL_GetFPS_t, GetFPS, ray_handle);
   LOAD_FUNC_FROM_DLL(RL_GetFrameTime_t, GetFrameTime, ray_handle);
+  LOAD_FUNC_FROM_DLL(RL_DrawText_t, DrawText, ray_handle);
+  LOAD_FUNC_FROM_DLL(RL_IsMouseButtonDown_t, IsMouseButtonDown, ray_handle);
 
   if (ray_handle == nullptr) {
     printf("No raylib shared library found!\n");
@@ -62,7 +64,13 @@ int main(int argc,char *argv[])
 
     if (CheckCollisionPointRec(mousePoint, btnBounds)) {
       DrawRectangleRec(btnBounds, RED);
-    } else {
+      if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+        CloseWindow();
+
+        return 0;
+      }
+    } 
+    else {
       DrawRectangleRec(btnBounds, ORANGE);
       DrawText("Pokakat",GetScreenWidth()/2.0f - GetScreenWidth()/4.0f - GetScreenWidth() / 4.0f * sin(GetTime() * -5), GetScreenHeight()/2.0f - GetScreenHeight()/4.0f - GetScreenHeight()/4.0f * cos(GetTime() * 5),100, BLACK);
     }
