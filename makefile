@@ -38,6 +38,7 @@ all: clean build run
 
 build: $(SOURCE)
 	$(CC) $(CC_FLAGS) $(SOURCES) -o $(BIN_DIR)/$(TARGET) $(LIBS)
+	# $(CC) -E $(CC_FLAGS) $(SOURCES) $(LIBS) # view preprocessed output
 	$(COPY_FILE) ./raylib/lib/libraylib.so ./bin/
 
 run:
