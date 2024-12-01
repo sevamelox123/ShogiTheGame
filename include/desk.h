@@ -8,13 +8,10 @@
 
 class Desk
 {
-public:
-    Desk();
-    void printDesk();
-    void AddPiece(Piece*);
-
-
 private:
     Piece *desk[9][9] = {nullptr};
-
+public:
+    Desk();
+    void AddPiece(Piece*);
+    Piece* GetPiece(Vector2D pos);
 };

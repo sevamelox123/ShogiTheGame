@@ -1,7 +1,3 @@
-#include <unistd.h>
-#include <string.h>
-#include <dlfcn.h>
-
 #include "raylib.h"
 
 #define LOAD_FUNC_FROM_DLL(type, name, handle) type name = reinterpret_cast<type>(dlsym(handle, #name))
