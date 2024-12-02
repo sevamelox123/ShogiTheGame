@@ -71,7 +71,8 @@ int main(int argc, char *argv[])
 
     mousePoint = GetMousePosition();
 
-    if (state == 0) {
+    if (state == 0)
+    {
       if (CheckCollisionPointRec(mousePoint, btnBounds))
       {
         DrawRectangleRec(btnBounds, RED);
@@ -93,10 +94,23 @@ int main(int argc, char *argv[])
 
       ClearBackground(RAYWHITE);
     }
-    else if (state == 1) {
+    else if (state == 1)
+    {
+      float dWidth = GetScreenHeight() / 2.0f;
+      float dHeight = dWidth;
       ClearBackground(RAYWHITE);
-      Rectangle _desk = {GetScreenWidth() / 4.0f, GetScreenHeight() / 4.0f, GetScreenWidth() / 2.0f, GetScreenHeight() / 1.5f};
-      DrawRectangleRec(_desk,ORANGE);
+      Rectangle _desk = {GetScreenWidth() / 2.0f - dWidth / 2.0f, GetScreenHeight() / 2.0f - dHeight / 2.0f, dWidth, dHeight};
+      DrawRectangleRec(_desk, ORANGE);
+      for (int i = 0; i < 81; i++)
+      {
+        float top_left_x = GetScreenWidth() / 2.0f - dWidth / 2.0f;
+        float top_left_y = GetScreenHeight() / 2.0f - dHeight / 2.0f;
+        Rectangle _help = {top_left_x + dWidth/9.0f * (i % 9) + 1, top_left_y + dWidth/9.0f * (i / 9) + 1, dWidth / 9.0f - 2,dHeight / 9.0f - 2};
+        DrawRectangleRec(_help, BLACK);
+        _help = {top_left_x + dWidth/9.0f * (i % 9) + 3, top_left_y + dWidth/9.0f * (i / 9) + 3, dWidth / 9.0f - 6,dHeight / 9.0f - 6};
+        DrawRectangleRec(_help, ORANGE);
+        
+      }
     }
 
     EndDrawing();
