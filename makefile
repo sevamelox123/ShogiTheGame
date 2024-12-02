@@ -12,7 +12,7 @@ BIN_DIR=bin
 # Исходные коды
 SOURCES=$(SRC_DIR)/*.cpp
 
-DEL_FILE      = rm -f
+DEL_FILE      = rm -rf
 CHK_DIR_EXISTS= test -d
 MKDIR         = mkdir -p
 COPY          = cp -f
@@ -21,9 +21,8 @@ COPY_DIR      = cp -f -R
 INSTALL_FILE  = install -m 644 -p
 INSTALL_PROGRAM = install -m 755 -p
 INSTALL_DIR   = cp -f -R
-DEL_FILE      = rm -f
 SYMLINK       = ln -f -s
-DEL_DIR       = rmdir
+DEL_DIR       = rm -rf
 MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
@@ -40,9 +39,11 @@ build: $(SOURCE)
 	$(CC) $(CC_FLAGS) $(SOURCES) -o $(BIN_DIR)/$(TARGET) $(LIBS)
 	# $(CC) -E $(CC_FLAGS) $(SOURCES) $(LIBS) # view preprocessed output
 	$(COPY_FILE) ./raylib/lib/libraylib.so ./bin/
+	$(COPY_DIR) ./texture/ ./bin/
 
 run:
 	./$(BIN_DIR)/$(TARGET)
 
 clean:
-	$(DEL_FILE) bin/*
+	$(DEL_FILE) bin
+	$(MKDIR) bin
