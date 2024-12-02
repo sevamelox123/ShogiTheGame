@@ -37,9 +37,10 @@ STRIP         = strip
 all: clean build run
 
 build: $(SOURCE)
+	$(MKDIR) $(BIN_DIR)
 	$(CC) $(CC_FLAGS) $(SOURCES) -o $(BIN_DIR)/$(TARGET) $(LIBS)
 	# $(CC) -E $(CC_FLAGS) $(SOURCES) $(LIBS) # view preprocessed output
-	$(COPY_FILE) ./raylib/lib/libraylib.so ./bin/
+	$(COPY_FILE) ./raylib/lib/libraylib.so $(BIN_DIR)
 
 run:
 	./$(BIN_DIR)/$(TARGET)
