@@ -23,3 +23,7 @@ typedef decltype(GetFPS)* RL_GetFPS_t;
 typedef decltype(GetFrameTime)* RL_GetFrameTime_t;
 typedef decltype(DrawText)* RL_DrawText_t;
 typedef decltype(IsMouseButtonDown)* RL_IsMouseButtonDown_t;
+typedef decltype(LoadFont)* RL_LoadFont_t;
+typedef decltype(MeasureTextEx)* RL_MeasureTextEx_t;
+typedef decltype(GetFontDefault)* RL_GetFontDefault_t;
+typedef decltype(DrawTextPro)* RL_DrawTextPro_t;
