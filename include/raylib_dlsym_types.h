@@ -27,3 +27,5 @@ typedef decltype(LoadFont)* RL_LoadFont_t;
 typedef decltype(MeasureTextEx)* RL_MeasureTextEx_t;
 typedef decltype(GetFontDefault)* RL_GetFontDefault_t;
 typedef decltype(DrawTextPro)* RL_DrawTextPro_t;
+typedef decltype(ToggleFullscreen)* RL_ToggleFullscreen_t;
+typedef decltype(BeginMode3D)* RL_BeginMode3D_t;

@@ -48,6 +48,8 @@ int main(int argc, char *argv[])
   LOAD_FUNC_FROM_DLL(RL_MeasureTextEx_t, MeasureTextEx, ray_handle);
   LOAD_FUNC_FROM_DLL(RL_GetFontDefault_t, GetFontDefault, ray_handle);
   LOAD_FUNC_FROM_DLL(RL_DrawTextPro_t, DrawTextPro, ray_handle);
+  LOAD_FUNC_FROM_DLL(RL_ToggleFullscreen_t, ToggleFullscreen, ray_handle);
+  LOAD_FUNC_FROM_DLL(RL_BeginMode3D_t, BeginMode3D, ray_handle);
   if (ray_handle == nullptr)
   {
     printf("No raylib shared library found!\n");
@@ -60,7 +62,7 @@ int main(int argc, char *argv[])
   SetTargetFPS(60);
 
   Vector2 mousePoint = {0.0f, 0.0f};
-
+  int state = 0;
   while (!WindowShouldClose())
   {
     Rectangle btnBounds = {GetScreenWidth() / 4.0f, GetScreenHeight() / 4.0f, GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f};
@@ -69,28 +71,33 @@ int main(int argc, char *argv[])
 
     mousePoint = GetMousePosition();
 
-    if (CheckCollisionPointRec(mousePoint, btnBounds))
-    {
-      DrawRectangleRec(btnBounds, RED);
-      Font font = GetFontDefault();
-      Vector2 text_size = MeasureTextEx(font, "Play Shog", 50, 5);
-      DrawTextPro(font, "Play Shog", Vector2{GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f}, Vector2{text_size.x / 2.0f, text_size.y / 2.0f}, 0, 50, 5, BLACK);
-      if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+    if (state == 0) {
+      if (CheckCollisionPointRec(mousePoint, btnBounds))
       {
-        CloseWindow();
-
-        return 0;
+        DrawRectangleRec(btnBounds, RED);
+        Font font = GetFontDefault();
+        Vector2 text_size = MeasureTextEx(font, "Play Shog", 50, 5);
+        DrawTextPro(font, "Play Shog", Vector2{GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f}, Vector2{text_size.x / 2.0f, text_size.y / 2.0f}, 0, 50, 5, BLACK);
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+        {
+          state = 1;
+        }
       }
-    }
-    else
-    {
-      DrawRectangleRec(btnBounds, ORANGE);
-      Font font = GetFontDefault();
-      Vector2 text_size = MeasureTextEx(font, "Play Shog", 50, 5);
-      DrawTextPro(font, "Play Shog", Vector2{GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f}, Vector2{text_size.x / 2.0f, text_size.y / 2.0f}, 0, 50, 5, BLACK);
-    }
+      else
+      {
+        DrawRectangleRec(btnBounds, ORANGE);
+        Font font = GetFontDefault();
+        Vector2 text_size = MeasureTextEx(font, "Play Shog", 50, 5);
+        DrawTextPro(font, "Play Shog", Vector2{GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f}, Vector2{text_size.x / 2.0f, text_size.y / 2.0f}, 0, 50, 5, BLACK);
+      }
 
-    ClearBackground(RAYWHITE);
+      ClearBackground(RAYWHITE);
+    }
+    else if (state == 1) {
+      ClearBackground(RAYWHITE);
+      Rectangle _desk = {GetScreenWidth() / 4.0f, GetScreenHeight() / 4.0f, GetScreenWidth() / 2.0f, GetScreenHeight() / 1.5f};
+      DrawRectangleRec(_desk,ORANGE);
+    }
 
     EndDrawing();
   }
